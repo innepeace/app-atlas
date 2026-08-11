@@ -5,6 +5,8 @@
 
 **🔗 [在线 Demo 体验](https://innepeace.github.io/app-atlas/)**
 
+![App Atlas Demo](docs/assets/demo.gif)
+
 **拿到即用**——零 npm 依赖、零构建步骤，配置好源码路径即可让 AI Agent 自动采集，或手动编写。
 
 ### ✨ 为什么需要 App Atlas？
