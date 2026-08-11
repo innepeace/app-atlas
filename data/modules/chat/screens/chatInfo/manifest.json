@@ -1,0 +1,20 @@
+{
+  "screen": { "id": "chatInfo", "module": "chat", "title": "Chat Info", "route": "/chat/info", "description": "Chat settings: mute, pin, clear history, group members" },
+  "source": { "vc": "ChatInfoViewController.swift", "vm": null, "files": [], "rev": "demo" },
+  "layout": [
+    { "type": "navbar", "id": "nav", "label": "← Chat Info", "children": [{ "type": "button", "id": "btn-back", "label": "← Back" }] },
+    { "type": "list", "id": "settings-list", "label": "Settings List", "children": [
+      { "type": "cell", "id": "cell-mute", "label": "Mute Notifications" },
+      { "type": "cell", "id": "cell-pin", "label": "Pin to Top" },
+      { "type": "cell", "id": "cell-clear", "label": "Clear Chat History" }
+    ]}
+  ],
+  "states": [{ "id": "default", "label": "Default", "note": "Show chat settings" }],
+  "hotspots": [
+    { "id": "btn-back", "label": "Back", "kind": "navigate", "logic_ref": "#back", "branches": [{ "condition": "", "label": "Pop", "goto": "chatRoom" }] },
+    { "id": "cell-mute", "label": "Mute", "kind": "action", "logic_ref": "#mute", "branches": [{ "condition": "", "label": "Toggle mute state", "goto": "" }] },
+    { "id": "cell-clear", "label": "Clear History", "kind": "action", "logic_ref": "#clear", "branches": [{ "condition": "Confirm", "label": "Delete all messages", "goto": "" }] }
+  ],
+  "links": { "prev": ["chatRoom"], "next": [] },
+  "status": "collected"
+}

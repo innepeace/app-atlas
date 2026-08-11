@@ -1,0 +1,19 @@
+{
+  "screen": { "id": "meAbout", "module": "me", "title": "About", "route": "/me/about", "description": "App version, terms of service, licenses" },
+  "source": { "vc": "AboutViewController.swift", "vm": null, "files": [], "rev": "demo" },
+  "layout": [
+    { "type": "navbar", "id": "nav", "label": "← About", "children": [{ "type": "button", "id": "btn-back", "label": "← Back" }] },
+    { "type": "card", "id": "version-card", "label": "App Icon + Version 1.0.0 (Build 42)" },
+    { "type": "list", "id": "links-list", "label": "Links", "children": [
+      { "type": "cell", "id": "cell-terms", "label": "Terms of Service" },
+      { "type": "cell", "id": "cell-privacy-policy", "label": "Privacy Policy" },
+      { "type": "cell", "id": "cell-licenses", "label": "Open Source Licenses" }
+    ]}
+  ],
+  "states": [{ "id": "default", "label": "Default", "note": "Static info page" }],
+  "hotspots": [
+    { "id": "btn-back", "label": "Back", "kind": "navigate", "logic_ref": "#back", "branches": [{ "condition": "", "label": "Pop", "goto": "meSettings" }] }
+  ],
+  "links": { "prev": ["meSettings"], "next": [] },
+  "status": "collected"
+}

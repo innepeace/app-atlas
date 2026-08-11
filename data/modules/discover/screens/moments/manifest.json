@@ -1,0 +1,32 @@
+{
+  "screen": { "id": "moments", "module": "discover", "title": "Moments", "route": "/discover/moments", "description": "Social feed with photos, text posts, likes and comments" },
+  "source": { "vc": "MomentsViewController.swift", "vm": "MomentsViewModel.swift", "files": [], "rev": "demo" },
+  "layout": [
+    { "type": "navbar", "id": "nav", "label": "← Moments", "children": [
+      { "type": "button", "id": "btn-back", "label": "← Back" },
+      { "type": "button", "id": "btn-post", "label": "📷 Post" }
+    ]},
+    { "type": "list", "id": "feed-list", "label": "Feed", "children": [
+      { "type": "cell", "id": "feed-item", "label": "Post Cell", "note": "Avatar + Name + Content + Images + Like/Comment bar" }
+    ]},
+    { "type": "button", "id": "pull-refresh", "label": "Pull to Refresh" }
+  ],
+  "states": [
+    { "id": "default", "label": "Feed", "note": "Scrollable feed of friends' posts" },
+    { "id": "empty", "label": "Empty", "note": "No posts from friends" }
+  ],
+  "hotspots": [
+    { "id": "btn-back", "label": "Back", "kind": "navigate", "logic_ref": "#back", "branches": [{ "condition": "", "label": "Pop to discover", "goto": "discoverMain" }] },
+    { "id": "btn-post", "label": "New Post", "kind": "action", "logic_ref": "#new-post", "branches": [
+      { "condition": "Long press", "label": "Text-only post", "goto": "" },
+      { "condition": "Tap", "label": "Photo post (pick images)", "goto": "" }
+    ]},
+    { "id": "feed-item", "label": "Post Interaction", "kind": "action", "logic_ref": "#post-interact", "branches": [
+      { "condition": "Like", "label": "Toggle like", "goto": "" },
+      { "condition": "Comment", "label": "Open comment input", "goto": "" },
+      { "condition": "Tap image", "label": "Fullscreen image browser", "goto": "" }
+    ]}
+  ],
+  "links": { "prev": ["discoverMain"], "next": [] },
+  "status": "collected"
+}

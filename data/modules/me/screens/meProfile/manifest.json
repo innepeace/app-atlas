@@ -1,0 +1,22 @@
+{
+  "screen": { "id": "meProfile", "module": "me", "title": "Me", "route": "/me", "description": "User profile tab with avatar, settings entry, and feature shortcuts" },
+  "source": { "vc": "MeViewController.swift", "vm": null, "files": [], "rev": "demo" },
+  "layout": [
+    { "type": "navbar", "id": "nav", "label": "Me" },
+    { "type": "card", "id": "profile-header", "label": "Avatar + Name + QR Code", "note": "Tap to edit profile" },
+    { "type": "list", "id": "menu-list", "label": "Menu", "children": [
+      { "type": "cell", "id": "cell-favorites", "label": "Favorites" },
+      { "type": "cell", "id": "cell-wallet", "label": "Wallet" },
+      { "type": "cell", "id": "cell-settings", "label": "Settings" }
+    ]}
+  ],
+  "states": [{ "id": "default", "label": "Default", "note": "Show profile and menu" }],
+  "hotspots": [
+    { "id": "profile-header", "label": "Edit Profile", "kind": "action", "logic_ref": "#edit-profile", "branches": [{ "condition": "", "label": "Push profile editor", "goto": "" }] },
+    { "id": "cell-favorites", "label": "Favorites", "kind": "action", "logic_ref": "#favorites", "branches": [{ "condition": "", "label": "Push favorites list", "goto": "" }] },
+    { "id": "cell-wallet", "label": "Wallet", "kind": "action", "logic_ref": "#wallet", "branches": [{ "condition": "", "label": "Push wallet (requires auth)", "goto": "" }] },
+    { "id": "cell-settings", "label": "Settings", "kind": "navigate", "logic_ref": "#settings", "branches": [{ "condition": "", "label": "Push settings page", "goto": "meSettings" }] }
+  ],
+  "links": { "prev": [], "next": ["meSettings"] },
+  "status": "collected"
+}

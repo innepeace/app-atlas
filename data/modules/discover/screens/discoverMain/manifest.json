@@ -1,0 +1,22 @@
+{
+  "screen": { "id": "discoverMain", "module": "discover", "title": "Discover", "route": "/discover", "description": "Discover tab: Moments, Scan, Shake, Mini Programs" },
+  "source": { "vc": "DiscoverViewController.swift", "vm": null, "files": [], "rev": "demo" },
+  "layout": [
+    { "type": "navbar", "id": "nav", "label": "Discover" },
+    { "type": "list", "id": "discover-list", "label": "Feature List", "children": [
+      { "type": "cell", "id": "cell-moments", "label": "Moments", "note": "Photo/text social feed" },
+      { "type": "cell", "id": "cell-scan", "label": "Scan", "note": "QR code scanner" },
+      { "type": "cell", "id": "cell-shake", "label": "Shake", "note": "Find nearby people" },
+      { "type": "cell", "id": "cell-mini", "label": "Mini Programs", "note": "Embedded apps" }
+    ]}
+  ],
+  "states": [{ "id": "default", "label": "Default", "note": "Static feature list" }],
+  "hotspots": [
+    { "id": "cell-moments", "label": "Moments", "kind": "navigate", "logic_ref": "#moments", "branches": [{ "condition": "", "label": "Push moments feed", "goto": "moments" }] },
+    { "id": "cell-scan", "label": "Scan", "kind": "action", "logic_ref": "#scan", "branches": [{ "condition": "", "label": "Open camera scanner", "goto": "" }] },
+    { "id": "cell-shake", "label": "Shake", "kind": "action", "logic_ref": "#shake", "branches": [{ "condition": "", "label": "Shake to find people", "goto": "" }] },
+    { "id": "cell-mini", "label": "Mini Programs", "kind": "action", "logic_ref": "#mini-programs", "branches": [{ "condition": "", "label": "Open mini program list", "goto": "" }] }
+  ],
+  "links": { "prev": [], "next": ["moments"] },
+  "status": "collected"
+}

@@ -1,0 +1,100 @@
+{
+  "screen": {
+    "id": "chatRoom",
+    "module": "chat",
+    "title": "Chat Room",
+    "route": "/chat/room",
+    "description": "1-on-1 or group chat room with message list, input bar, and rich media support"
+  },
+  "source": {
+    "vc": "ChatRoomViewController.swift",
+    "vm": "ChatRoomViewModel.swift",
+    "files": ["Modules/Chat/Room/ChatRoomViewController.swift"],
+    "rev": "demo"
+  },
+  "layout": [
+    {
+      "type": "navbar",
+      "id": "nav",
+      "label": "← Contact Name",
+      "children": [
+        { "type": "button", "id": "btn-back", "label": "← Back" },
+        { "type": "button", "id": "btn-info", "label": "⋯ Info" }
+      ]
+    },
+    {
+      "type": "list",
+      "id": "message-list",
+      "label": "Message List",
+      "note": "UICollectionView with message bubbles. Supports text, image, voice, video, location, link.",
+      "children": [
+        { "type": "cell", "id": "msg-bubble", "label": "Message Bubble" },
+        { "type": "cell", "id": "msg-image", "label": "Image Message", "note": "Tap to fullscreen preview" }
+      ]
+    },
+    {
+      "type": "toolbar",
+      "id": "input-bar",
+      "label": "Input Bar",
+      "children": [
+        { "type": "button", "id": "btn-voice", "label": "🎤 Voice" },
+        { "type": "input", "id": "text-input", "label": "Message input field" },
+        { "type": "button", "id": "btn-emoji", "label": "😊 Emoji" },
+        { "type": "button", "id": "btn-more", "label": "＋ More" },
+        { "type": "button", "id": "btn-send", "label": "Send" }
+      ]
+    }
+  ],
+  "states": [
+    { "id": "default", "label": "Chatting", "note": "Normal message flow" },
+    { "id": "recording", "label": "Voice Recording", "note": "Hold to record voice message" },
+    { "id": "more-panel", "label": "More Panel", "note": "Show photo/camera/location/file options" }
+  ],
+  "hotspots": [
+    {
+      "id": "btn-back",
+      "label": "Back",
+      "kind": "navigate",
+      "logic_ref": "#back",
+      "branches": [{ "condition": "", "label": "Pop to chat list", "goto": "chatList" }]
+    },
+    {
+      "id": "btn-info",
+      "label": "Chat Info",
+      "kind": "navigate",
+      "logic_ref": "#chat-info",
+      "branches": [{ "condition": "", "label": "Push chat info page", "goto": "chatInfo" }]
+    },
+    {
+      "id": "btn-send",
+      "label": "Send Message",
+      "kind": "action",
+      "logic_ref": "#send-message",
+      "branches": [
+        { "condition": "Text not empty", "label": "Send text message via WebSocket", "goto": "" },
+        { "condition": "Text empty", "label": "Button disabled", "goto": "" }
+      ]
+    },
+    {
+      "id": "btn-more",
+      "label": "More Options",
+      "kind": "action",
+      "logic_ref": "#more-panel",
+      "branches": [
+        { "condition": "Photo", "label": "Open photo picker", "goto": "" },
+        { "condition": "Camera", "label": "Open camera", "goto": "" },
+        { "condition": "Location", "label": "Open location picker", "goto": "" },
+        { "condition": "File", "label": "Open document picker", "goto": "" }
+      ]
+    },
+    {
+      "id": "msg-image",
+      "label": "Tap Image",
+      "kind": "action",
+      "logic_ref": "#image-preview",
+      "branches": [{ "condition": "", "label": "Fullscreen image browser", "goto": "" }]
+    }
+  ],
+  "links": { "prev": ["chatList"], "next": ["chatInfo"] },
+  "status": "collected"
+}

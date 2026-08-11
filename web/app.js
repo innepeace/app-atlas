@@ -780,7 +780,7 @@ async function main() {
       const b = e.target.closest('.crumb');
       if (b && b.dataset.goto) openScreen(b.dataset.goto);
     });
-    const initialScreen = readHash().screenId;
+    const initialScreen = readHash().screenId || (registry.roots && registry.roots[0] && registry.roots[0].screen) || null;
     if (initialScreen) openScreen(initialScreen);
     setupHelpButton();
     checkSourceConfig();

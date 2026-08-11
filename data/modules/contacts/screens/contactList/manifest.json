@@ -1,0 +1,20 @@
+{
+  "screen": { "id": "contactList", "module": "contacts", "title": "Contacts", "route": "/contacts/list", "description": "Alphabetically sorted contact list with section index" },
+  "source": { "vc": "ContactListViewController.swift", "vm": "ContactListViewModel.swift", "files": [], "rev": "demo" },
+  "layout": [
+    { "type": "navbar", "id": "nav", "label": "Contacts", "children": [{ "type": "button", "id": "btn-add-friend", "label": "＋ Add" }] },
+    { "type": "list", "id": "contact-list", "label": "Contact List (A-Z sections)", "children": [
+      { "type": "cell", "id": "contact-cell", "label": "Contact Row", "note": "Avatar + Name + Tap to detail" }
+    ]},
+    { "type": "selector", "id": "section-index", "label": "A-Z Index Bar" }
+  ],
+  "states": [
+    { "id": "default", "label": "Default", "note": "Full contact list grouped alphabetically" }
+  ],
+  "hotspots": [
+    { "id": "btn-add-friend", "label": "Add Friend", "kind": "navigate", "logic_ref": "#add-friend", "branches": [{ "condition": "", "label": "Push add friend page", "goto": "" }] },
+    { "id": "contact-cell", "label": "Tap Contact", "kind": "navigate", "logic_ref": "#tap-contact", "branches": [{ "condition": "", "label": "Push contact detail", "goto": "contactDetail" }] }
+  ],
+  "links": { "prev": [], "next": ["contactDetail"] },
+  "status": "collected"
+}

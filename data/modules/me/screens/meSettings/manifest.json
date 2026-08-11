@@ -1,0 +1,26 @@
+{
+  "screen": { "id": "meSettings", "module": "me", "title": "Settings", "route": "/me/settings", "description": "App settings: notifications, privacy, storage, about, logout" },
+  "source": { "vc": "SettingsViewController.swift", "vm": null, "files": [], "rev": "demo" },
+  "layout": [
+    { "type": "navbar", "id": "nav", "label": "← Settings", "children": [{ "type": "button", "id": "btn-back", "label": "← Back" }] },
+    { "type": "list", "id": "settings-list", "label": "Settings", "children": [
+      { "type": "cell", "id": "cell-notifications", "label": "Notifications" },
+      { "type": "cell", "id": "cell-privacy", "label": "Privacy" },
+      { "type": "cell", "id": "cell-storage", "label": "Storage" },
+      { "type": "cell", "id": "cell-about", "label": "About" },
+      { "type": "button", "id": "btn-logout", "label": "Log Out" }
+    ]}
+  ],
+  "states": [{ "id": "default", "label": "Default", "note": "Settings list" }],
+  "hotspots": [
+    { "id": "btn-back", "label": "Back", "kind": "navigate", "logic_ref": "#back", "branches": [{ "condition": "", "label": "Pop", "goto": "meProfile" }] },
+    { "id": "cell-about", "label": "About", "kind": "navigate", "logic_ref": "#about", "branches": [{ "condition": "", "label": "Push about page", "goto": "meAbout" }] },
+    { "id": "cell-storage", "label": "Storage", "kind": "action", "logic_ref": "#storage", "branches": [{ "condition": "", "label": "Show cache size + clear button", "goto": "" }] },
+    { "id": "btn-logout", "label": "Log Out", "kind": "action", "logic_ref": "#logout", "branches": [
+      { "condition": "Confirm", "label": "Clear token → back to login", "goto": "" },
+      { "condition": "Cancel", "label": "Dismiss", "goto": "" }
+    ]}
+  ],
+  "links": { "prev": ["meProfile"], "next": ["meAbout"] },
+  "status": "collected"
+}

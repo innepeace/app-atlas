@@ -1,0 +1,86 @@
+{
+  "screen": {
+    "id": "chatList",
+    "module": "chat",
+    "title": "Chat List",
+    "route": "/chat/list",
+    "description": "Main chat list showing recent conversations, with search, add contacts, and unread badges"
+  },
+  "source": {
+    "vc": "ChatListViewController.swift",
+    "vm": "ChatListViewModel.swift",
+    "files": ["Modules/Chat/ChatList/ChatListViewController.swift", "Modules/Chat/ChatList/ChatListViewModel.swift"],
+    "rev": "demo"
+  },
+  "layout": [
+    {
+      "type": "navbar",
+      "id": "nav",
+      "label": "Chats",
+      "children": [
+        { "type": "button", "id": "btn-search", "label": "🔍 Search" },
+        { "type": "button", "id": "btn-add", "label": "＋ Add" }
+      ]
+    },
+    {
+      "type": "list",
+      "id": "chat-list",
+      "label": "Conversation List",
+      "note": "UITableView, grouped by pinned/unpinned. Each cell shows avatar, name, last message, time, unread badge.",
+      "children": [
+        { "type": "cell", "id": "chat-cell", "label": "Chat Cell", "note": "Tap → enter chat room" },
+        { "type": "cell", "id": "chat-cell-swipe", "label": "Swipe Actions", "note": "Left swipe: Pin / Mute / Delete" }
+      ]
+    },
+    { "type": "button", "id": "pull-refresh", "label": "Pull to Refresh" }
+  ],
+  "states": [
+    { "id": "default", "label": "Default", "note": "Show conversation list sorted by last message time" },
+    { "id": "empty", "label": "Empty", "note": "No conversations yet" },
+    { "id": "searching", "label": "Searching", "note": "Search bar active, filter results" }
+  ],
+  "hotspots": [
+    {
+      "id": "btn-search",
+      "label": "Search",
+      "kind": "action",
+      "logic_ref": "#search",
+      "branches": [
+        { "condition": "", "label": "Activate search bar, filter conversations", "goto": "" }
+      ]
+    },
+    {
+      "id": "btn-add",
+      "label": "Add Contact / New Chat",
+      "kind": "action",
+      "logic_ref": "#add-menu",
+      "branches": [
+        { "condition": "New Chat", "label": "Open contact picker → create chat", "goto": "contactList" },
+        { "condition": "Add Friend", "label": "Open add friend page", "goto": "contactDetail" },
+        { "condition": "Scan QR", "label": "Open scanner", "goto": "discoverMain" }
+      ]
+    },
+    {
+      "id": "chat-cell",
+      "label": "Tap Conversation",
+      "kind": "navigate",
+      "logic_ref": "#tap-chat",
+      "branches": [
+        { "condition": "", "label": "Enter chat room", "goto": "chatRoom" }
+      ]
+    },
+    {
+      "id": "chat-cell-swipe",
+      "label": "Swipe Actions",
+      "kind": "action",
+      "logic_ref": "#swipe-actions",
+      "branches": [
+        { "condition": "Pin", "label": "Toggle pin to top", "goto": "" },
+        { "condition": "Mute", "label": "Toggle notifications", "goto": "" },
+        { "condition": "Delete", "label": "Delete conversation", "goto": "" }
+      ]
+    }
+  ],
+  "links": { "prev": [], "next": ["chatRoom", "contactList", "contactDetail"] },
+  "status": "collected"
+}

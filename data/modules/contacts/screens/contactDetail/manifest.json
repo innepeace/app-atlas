@@ -1,0 +1,22 @@
+{
+  "screen": { "id": "contactDetail", "module": "contacts", "title": "Contact Detail", "route": "/contacts/detail", "description": "Friend profile with send message, voice/video call actions" },
+  "source": { "vc": "ContactDetailViewController.swift", "vm": null, "files": [], "rev": "demo" },
+  "layout": [
+    { "type": "navbar", "id": "nav", "label": "← Profile", "children": [{ "type": "button", "id": "btn-back", "label": "← Back" }] },
+    { "type": "card", "id": "profile-card", "label": "Avatar + Name + ID" },
+    { "type": "list", "id": "action-list", "label": "Actions", "children": [
+      { "type": "button", "id": "btn-message", "label": "Send Message" },
+      { "type": "button", "id": "btn-voice-call", "label": "Voice Call" },
+      { "type": "button", "id": "btn-video-call", "label": "Video Call" }
+    ]}
+  ],
+  "states": [{ "id": "default", "label": "Default", "note": "Show profile and action buttons" }],
+  "hotspots": [
+    { "id": "btn-back", "label": "Back", "kind": "navigate", "logic_ref": "#back", "branches": [{ "condition": "", "label": "Pop", "goto": "contactList" }] },
+    { "id": "btn-message", "label": "Send Message", "kind": "navigate", "logic_ref": "#send-msg", "branches": [{ "condition": "", "label": "Open/create conversation → chatRoom", "goto": "chatRoom" }] },
+    { "id": "btn-voice-call", "label": "Voice Call", "kind": "action", "logic_ref": "#voice-call", "branches": [{ "condition": "", "label": "Initiate VoIP voice call", "goto": "" }] },
+    { "id": "btn-video-call", "label": "Video Call", "kind": "action", "logic_ref": "#video-call", "branches": [{ "condition": "", "label": "Initiate VoIP video call", "goto": "" }] }
+  ],
+  "links": { "prev": ["contactList"], "next": ["chatRoom"] },
+  "status": "collected"
+}

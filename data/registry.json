@@ -1,5 +1,53 @@
 {
   "schemaVersion": 1,
-  "roots": [],
-  "modules": []
+  "roots": [
+    { "label": "Chat", "screen": "chatList" },
+    { "label": "Contacts", "screen": "contactList" },
+    { "label": "Discover", "screen": "discoverMain" },
+    { "label": "Me", "screen": "meProfile" }
+  ],
+  "modules": [
+    {
+      "id": "chat",
+      "name": "Chat",
+      "status": "collected",
+      "description": "Messaging module",
+      "screens": [
+        { "id": "chatList", "title": "Chat List", "route": "/chat/list", "status": "collected", "updatedAt": "2026-08-11", "hasImage": false, "tags": ["tab"] },
+        { "id": "chatRoom", "title": "Chat Room", "route": "/chat/room", "status": "collected", "updatedAt": "2026-08-11", "hasImage": false, "tags": [] },
+        { "id": "chatInfo", "title": "Chat Info", "route": "/chat/info", "status": "collected", "updatedAt": "2026-08-11", "hasImage": false, "tags": [] }
+      ]
+    },
+    {
+      "id": "contacts",
+      "name": "Contacts",
+      "status": "collected",
+      "description": "Contacts & friends module",
+      "screens": [
+        { "id": "contactList", "title": "Contacts", "route": "/contacts/list", "status": "collected", "updatedAt": "2026-08-11", "hasImage": false, "tags": ["tab"] },
+        { "id": "contactDetail", "title": "Contact Detail", "route": "/contacts/detail", "status": "collected", "updatedAt": "2026-08-11", "hasImage": false, "tags": [] }
+      ]
+    },
+    {
+      "id": "discover",
+      "name": "Discover",
+      "status": "collected",
+      "description": "Discover features: Moments, Scan, Mini Programs",
+      "screens": [
+        { "id": "discoverMain", "title": "Discover", "route": "/discover", "status": "collected", "updatedAt": "2026-08-11", "hasImage": false, "tags": ["tab"] },
+        { "id": "moments", "title": "Moments", "route": "/discover/moments", "status": "collected", "updatedAt": "2026-08-11", "hasImage": false, "tags": [] }
+      ]
+    },
+    {
+      "id": "me",
+      "name": "Me",
+      "status": "collected",
+      "description": "User profile & settings",
+      "screens": [
+        { "id": "meProfile", "title": "Me", "route": "/me", "status": "collected", "updatedAt": "2026-08-11", "hasImage": false, "tags": ["tab"] },
+        { "id": "meSettings", "title": "Settings", "route": "/me/settings", "status": "collected", "updatedAt": "2026-08-11", "hasImage": false, "tags": [] },
+        { "id": "meAbout", "title": "About", "route": "/me/about", "status": "uncollected", "updatedAt": "2026-08-11", "hasImage": false, "tags": [] }
+      ]
+    }
+  ]
 }
