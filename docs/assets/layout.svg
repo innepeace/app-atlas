@@ -1,0 +1,53 @@
+<svg viewBox="0 0 560 180" xmlns="http://www.w3.org/2000/svg">
+  <rect x="1" y="1" width="558" height="178" rx="8" fill="#f8f9fa" stroke="#ddd"/>
+  <!-- 顶栏 -->
+  <rect x="1" y="1" width="558" height="30" rx="8" fill="#2f6fed" opacity="0.1" stroke="#2f6fed" stroke-opacity="0.3"/>
+  <text x="12" y="20" font-size="11" fill="#2f6fed" font-weight="600">App Atlas · 业务地图</text>
+  <text x="280" y="20" font-size="10" fill="#666">🔍 全局搜索</text>
+  <text x="530" y="20" font-size="12" fill="#2f6fed">?</text>
+  <!-- 左侧导航 -->
+  <rect x="6" y="36" width="120" height="136" rx="6" fill="#fff" stroke="#e0e0e0"/>
+  <text x="16" y="52" font-size="9" fill="#999">导航树</text>
+  <rect x="14" y="58" width="100" height="12" rx="2" fill="#eef4ff"/>
+  <text x="18" y="67" font-size="8" fill="#333">▸ trade (24屏)</text>
+  <rect x="14" y="74" width="100" height="12" rx="2" fill="#eef4ff"/>
+  <text x="18" y="83" font-size="8" fill="#333">▸ market (19屏)</text>
+  <rect x="14" y="90" width="100" height="12" rx="2" fill="#e3f0ff" stroke="#2f6fed" stroke-width="0.5"/>
+  <text x="18" y="99" font-size="8" fill="#2f6fed" font-weight="600">  下单页 ●</text>
+  <rect x="14" y="106" width="100" height="12" rx="2" fill="#eef4ff"/>
+  <text x="18" y="115" font-size="8" fill="#333">▸ fund (4屏)</text>
+  <text x="16" y="140" font-size="8" fill="#aaa">点击切换屏幕</text>
+  <!-- 中间展示区 -->
+  <rect x="132" y="36" width="220" height="136" rx="6" fill="#fff" stroke="#e0e0e0"/>
+  <text x="142" y="52" font-size="9" fill="#999">线框图 / 截图</text>
+  <!-- 工具栏 -->
+  <rect x="138" y="57" width="40" height="14" rx="3" fill="#f0f0f0" stroke="#ddd"/>
+  <text x="143" y="67" font-size="7" fill="#555">← 返回</text>
+  <rect x="182" y="57" width="40" height="14" rx="3" fill="#f0f0f0" stroke="#ddd"/>
+  <text x="187" y="67" font-size="7" fill="#555">⊕ 定位</text>
+  <rect x="252" y="57" width="40" height="14" rx="3" fill="#2f6fed" stroke="#2f6fed"/>
+  <text x="255" y="67" font-size="7" fill="#fff">线框图</text>
+  <rect x="296" y="57" width="30" height="14" rx="3" fill="#f0f0f0" stroke="#ddd"/>
+  <text x="301" y="67" font-size="7" fill="#555">图片</text>
+  <!-- 线框图示意 -->
+  <rect x="140" y="78" width="200" height="18" rx="3" fill="#f7f8fa" stroke="#ccc" stroke-dasharray="2"/>
+  <text x="150" y="90" font-size="8" fill="#666">navbar: ← 标题 🔍</text>
+  <rect x="140" y="100" width="200" height="16" rx="3" fill="#eef4ff" stroke="#2f6fed" stroke-width="0.8" stroke-dasharray="3"/>
+  <text x="150" y="111" font-size="8" fill="#2f6fed">🔵 热区: Buy Button</text>
+  <rect x="140" y="120" width="200" height="16" rx="3" fill="#fef5ed" stroke="#e67e22" stroke-width="0.8"/>
+  <text x="150" y="131" font-size="8" fill="#e67e22">🟠 多分支热区: Order Type</text>
+  <rect x="140" y="140" width="200" height="20" rx="3" fill="#f7f8fa" stroke="#ccc" stroke-dasharray="2"/>
+  <text x="150" y="153" font-size="8" fill="#666">list: 持仓列表</text>
+  <!-- 右侧逻辑面板 -->
+  <rect x="358" y="36" width="195" height="136" rx="6" fill="#fff" stroke="#e0e0e0"/>
+  <text x="368" y="52" font-size="9" fill="#999">业务逻辑 (logic.md)</text>
+  <text x="368" y="68" font-size="8" fill="#333" font-weight="600">## 概述</text>
+  <text x="368" y="80" font-size="7" fill="#666">VC 类名 + 入口 + 核心交互</text>
+  <text x="368" y="94" font-size="8" fill="#333" font-weight="600">## 主流程</text>
+  <rect x="368" y="98" width="80" height="30" rx="3" fill="#f0f8ff" stroke="#b8d4f0"/>
+  <text x="378" y="110" font-size="7" fill="#336">flowchart TD</text>
+  <text x="378" y="120" font-size="7" fill="#336">  A→B→C</text>
+  <text x="368" y="142" font-size="8" fill="#333" font-weight="600">## 分支逻辑</text>
+  <text x="368" y="154" font-size="7" fill="#666">每个热区的触发链...</text>
+  <text x="368" y="166" font-size="7" fill="#aaa">双击流程图可放大</text>
+</svg>

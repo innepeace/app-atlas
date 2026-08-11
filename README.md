@@ -1,8 +1,37 @@
 # App Atlas
 
-> 一个用于创建移动应用「可视化业务地图」的工具框架。将 App 每一屏的 UI 结构、交互热区、跳转关系和业务逻辑以地图形式呈现。
+> 一个用于创建移动应用「可视化业务地图」的工具框架。  
+> 将 App 每一屏的 UI 结构、交互热区、跳转关系和业务逻辑以地图形式呈现。
 
 **拿到即用**——零 npm 依赖、零构建步骤，配置好源码路径即可让 AI Agent 自动采集，或手动编写。
+
+---
+
+## 使用说明
+
+### 页面布局
+
+![页面布局](docs/assets/layout.svg)
+
+界面分为三栏：
+- **左侧导航树**：按模块分组展示所有页面，点击切换
+- **中间展示区**：线框图模式（结构化 UI 块 + 可点击热区）或图片模式（真机截图 + 热区覆盖层）
+- **右侧逻辑面板**：展示 logic.md 业务逻辑（支持 Mermaid 流程图、页面内搜索）
+
+### 热区类型
+
+![热区类型](docs/assets/hotspots.svg)
+
+- 🔵 **普通热区**（蓝色虚线）：点击查看跳转目标，直接导航到下一屏
+- 🟠 **多分支热区**（橙色实线）：点击弹出分支选择，按不同条件跳转不同页面
+- 📋 **其他入口**（侧边清单）：手势类 / 无固定位置的交互，列在截图右侧
+
+### 操作指引
+
+![操作指引](docs/assets/workflow.svg)
+
+1. 顶部搜索栏输入关键词 → 匹配已收集的页面 → 点击跳转
+2. 搜索无结果时 → 点「让 Claude 收集」→ AI 自动分析源码并生成页面数据 → 完成后自动跳转
 
 ---
 
@@ -10,12 +39,12 @@
 
 ```bash
 # 1. 克隆
-git clone <repo-url> my-app-atlas
+git clone https://github.com/innepeace/app-atlas.git my-app-atlas
 cd my-app-atlas
 
 # 2. 配置源码项目路径
 cp atlas.config.example.json atlas.config.json
-# 编辑 atlas.config.json，填入你的 iOS/Android 项目本地路径
+# 编辑 atlas.config.json，填入你的 App 项目本地路径
 # { "sourceProject": "/Users/xxx/your-ios-project" }
 
 # 3. 启动服务
@@ -25,7 +54,7 @@ node tools/serve.mjs 37421
 open http://127.0.0.1:37421/web/
 ```
 
-首次启动如果没有配置源码路径，页面会自动弹出配置对话框。
+首次启动若未配置源码路径，页面会自动弹出配置对话框引导填写。
 
 ---
 
@@ -51,13 +80,10 @@ Agent 的详细工作规范见 `AGENTS.md`、`rules.md`、`docs/CONVENTIONS.md`�
 ### 方式二：手动创建
 
 ```bash
-# 在 data/modules/ 下建目录
 mkdir -p data/modules/myModule/screens/myScreen
-
-# 创建 manifest.json 和 logic.md
-# 更新 data/registry.json 添加对应条目
-# 校验
-node tools/validate.mjs
+# 创建 manifest.json 和 logic.md（参考下方格式说明）
+# 在 data/registry.json 中添加模块和屏幕条目
+node tools/validate.mjs  # 校验
 ```
 
 ---
@@ -66,44 +92,26 @@ node tools/validate.mjs
 
 ```
 app-atlas/
-├── atlas.config.json        # 本地配置（sourceProject 路径，不提交 git）
-├── atlas.config.example.json# 配置模板
+├── atlas.config.json         # 本地配置（不提交 git）
+├── atlas.config.example.json # 配置模板
 ├── data/
-│   ├── registry.json        # 全局注册表（模块 → 屏幕列表）
-│   ├── components.json      # 可复用组件目录
-│   └── modules/             # 业务模块数据
+│   ├── registry.json         # 全局注册表
+│   ├── components.json       # 可复用组件目录
+│   └── modules/
 │       └── <module>/
 │           └── screens/
 │               └── <screenId>/
 │                   ├── manifest.json   # 页面结构 + 热区 + 状态
 │                   └── logic.md        # 业务逻辑文档
-├── web/                     # 前端可视化（纯静态，无构建）
-│   ├── index.html
-│   ├── app.js               # 主应用逻辑
-│   ├── render.mjs           # 渲染引擎（线框图 + 热区 + 截图）
-│   ├── search.mjs           # 全局搜索
-│   ├── styles.css
-│   └── assets/screens/      # 页面截图
-├── lib/                     # 核心库
-│   ├── config.mjs           # 配置读写
-│   ├── validate.mjs         # 数据校验逻辑
-│   ├── serve-core.mjs       # HTTP 服务核心
-│   ├── screenshot.mjs       # 截图/多视图管理
-│   ├── search.mjs           # 搜索引擎
-│   ├── sync.mjs             # 源码同步检测
-│   └── ...
-├── tools/                   # CLI 工具
-│   ├── serve.mjs            # 本地服务（含 Claude 收集能力）
-│   ├── validate.mjs         # 校验所有数据
-│   ├── sync.mjs             # 检测源码变更（陈旧标记）
-│   ├── seed-skeleton.mjs    # 从路由文件生成骨架
-│   └── screenshot.mjs       # 截图辅助
-├── test/                    # 测试
-├── AGENTS.md                # AI Agent 工作手册
-├── rules.md                 # 规则总纲
+├── web/                      # 前端可视化（纯静态）
+├── lib/                      # 核心库
+├── tools/                    # CLI 工具
+├── test/                     # 测试
+├── AGENTS.md                 # AI Agent 工作手册
+├── rules.md                  # 规则总纲
 └── docs/
-    ├── CONVENTIONS.md       # 收集守则（质量标准）
-    └── SYNC.md              # 同步机制说明
+    ├── CONVENTIONS.md        # 收集守则（质量标准）
+    └── SYNC.md               # 同步机制
 ```
 
 ---
@@ -112,7 +120,7 @@ app-atlas/
 
 | 命令 | 说明 |
 |------|------|
-| `node tools/serve.mjs 37421` | 启动本地服务（含 Web 界面 + Claude 收集 API） |
+| `node tools/serve.mjs 37421` | 启动本地服务（Web 界面 + Claude 收集 API） |
 | `node tools/validate.mjs` | 校验 registry + 所有 manifest 数据完整性 |
 | `node --test` | 运行测试 |
 | `node tools/sync.mjs` | 检测已收集屏的源码是否有变更 |
@@ -133,27 +141,24 @@ app-atlas/
     "module": "trade",              // 所属模块
     "title": "确认下单",             // 显示标题
     "route": "/trade/confirm",      // App 内路由
-    "description": "..."            // 一句话描述
+    "description": "..."
   },
   "source": {
     "vc": "OrderConfirmVC.swift",   // 主 ViewController
     "vm": "OrderConfirmVM.swift",   // ViewModel（可选）
-    "files": ["..."],               // 涉及的源文件列表
+    "files": ["..."],               // 涉及的源文件
     "rev": "a1b2c3d"                // 源码 git 短 SHA
   },
   "layout": [
     // UI 结构树（支持嵌套 children）
-    { "type": "navbar", "id": "nav", "label": "← 确认下单", "children": [...] },
-    { "type": "list", "id": "order-info", "label": "订单信息", "children": [...] },
+    { "type": "navbar", "id": "nav", "label": "← 确认下单" },
     { "type": "button", "id": "btn-submit", "label": "提交订单" }
   ],
   "states": [
-    // 页面状态列表
-    { "id": "default", "label": "默认态", "note": "正常显示订单信息" },
+    { "id": "default", "label": "默认态", "note": "正常显示" },
     { "id": "loading", "label": "提交中", "note": "按钮 loading" }
   ],
   "hotspots": [
-    // 可交互元素 — 每个对应 logic.md 中一个 ### 锚点
     {
       "id": "btn-submit",
       "label": "提交订单",
@@ -165,40 +170,32 @@ app-atlas/
       ]
     }
   ],
-  "links": {
-    "prev": ["orderEntry"],          // 从哪些页面可以跳到这里
-    "next": ["orderResult"]          // 这里可以跳到哪些页面
-  },
+  "links": { "prev": ["orderEntry"], "next": ["orderResult"] },
   "status": "collected"
 }
 ```
 
 ### logic.md
 
-Markdown 格式的业务逻辑文档，支持 Mermaid 流程图：
-
 ```markdown
 # orderConfirm — 确认下单
 
 ## 概述
-`OrderConfirmVC` 继承 `BaseVC`（push），从下单入口跳入。
-核心交互：展示订单详情 → 确认 → 提交。
+`OrderConfirmVC` 继承 `BaseVC`（push）。核心交互：展示订单详情 → 确认 → 提交。
 
 ## 主流程
-\`\`\`mermaid
+​```mermaid
 flowchart TD
     A[从 orderEntry 跳入] --> B[加载订单数据]
-    B --> C[展示确认信息]
-    C --> D{用户点击提交}
-    D -->|校验通过| E[调用下单接口]
-    D -->|校验失败| F[弹出错误]
-    E --> G[跳转 orderResult]
-\`\`\`
+    B --> C{用户点击提交}
+    C -->|校验通过| D[调用下单接口]
+    C -->|校验失败| E[弹出错误]
+    D --> F[跳转 orderResult]
+​```
 
 ## 分支逻辑
-
 ### submit-order
-触发链：`submitBtn.rx.tap` → `viewModel.submitOrder()` → 校验 → API 调用
+触发链：`submitBtn.rx.tap` → `viewModel.submitOrder()` → 校验 → API
 
 ## 业务规则
 - 金额不能超过可用余额
@@ -208,17 +205,17 @@ flowchart TD
 | 文件 | 职责 |
 |------|------|
 | OrderConfirmVC.swift | 主 VC |
-| OrderConfirmVM.swift | 业务逻辑 |
+
+## 待补充
+- 限价/市价切换逻辑待核对
 ```
 
 ### registry.json
 
-全局注册表，列出所有模块和屏幕：
-
 ```jsonc
 {
   "schemaVersion": 1,
-  "roots": [],       // 首页入口（可选）
+  "roots": [],
   "modules": [
     {
       "id": "trade",
@@ -234,25 +231,13 @@ flowchart TD
 
 ---
 
-## Web 界面功能
-
-- **导航树**：左侧按模块分组展示所有页面，点击切换
-- **线框图模式**：结构化展示 layout + 可点击热区
-- **图片模式**：展示真机截图 + 热区覆盖层
-- **业务逻辑面板**：右侧展示 logic.md（支持 Mermaid 流程图渲染）
-- **全局搜索**：搜索所有页面的标题、描述、逻辑文本
-- **Claude 收集**：搜索无结果时可一键让 AI 去源码中采集
-- **截图拖拽上传**：图片模式下拖入截图自动保存并关联热区
-- **页面间跳转**：点击热区直接跳转到目标页面
-
----
-
 ## 适用场景
 
-- iOS / Android / Flutter / React Native 等任意移动应用
-- 团队新人快速了解 App 全貌和业务逻辑
-- 业务评审、测试覆盖度参考
-- AI Agent 辅助代码理解的知识库
+- **任意移动应用**：iOS / Android / Flutter / React Native
+- **团队知识沉淀**：新人快速了解 App 全貌和业务逻辑
+- **业务评审**：可视化交互链条，发现遗漏
+- **测试参考**：交互覆盖度、分支路径一目了然
+- **AI 知识库**：辅助 Agent 理解代码时的结构化上下文
 
 ---
 
@@ -266,7 +251,7 @@ flowchart TD
 }
 ```
 
-- `sourceProject`：目标 App 源码的本地绝对路径，AI Agent 会从中读取源码进行分析
+`sourceProject`：目标 App 源码的本地绝对路径，AI Agent 会从中读取源码进行分析和采集。
 
 ---
 

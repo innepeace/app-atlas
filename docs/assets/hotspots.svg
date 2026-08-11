@@ -1,0 +1,15 @@
+<svg viewBox="0 0 560 70" xmlns="http://www.w3.org/2000/svg">
+  <!-- 蓝色虚线 -->
+  <rect x="10" y="8" width="150" height="24" rx="5" fill="rgba(47,111,237,0.06)" stroke="#2f6fed" stroke-width="1.5" stroke-dasharray="4"/>
+  <text x="22" y="24" font-size="9" fill="#2f6fed">普通热区（点击跳转）</text>
+  <!-- 橙色实线 -->
+  <rect x="180" y="8" width="160" height="24" rx="5" fill="rgba(230,126,34,0.08)" stroke="#e67e22" stroke-width="1.5"/>
+  <text x="192" y="24" font-size="9" fill="#e67e22">多分支热区（选择路径）</text>
+  <!-- 侧边清单 -->
+  <rect x="360" y="8" width="180" height="24" rx="5" fill="#f8f9fa" stroke="#ddd"/>
+  <text x="372" y="24" font-size="9" fill="#666">其他入口（手势/无固定位置）</text>
+  <!-- 说明 -->
+  <text x="10" y="52" font-size="9" fill="#444">点击蓝色热区 → 查看跳转目标</text>
+  <text x="180" y="52" font-size="9" fill="#444">点击橙色热区 → 弹出分支选择</text>
+  <text x="360" y="52" font-size="9" fill="#444">列在截图右侧的补充入口列表</text>
+</svg>
