@@ -55,10 +55,10 @@ function renderEntryGroup(allModules) {
     };
   });
   const collected = screens.filter(s => s.status === 'collected').length;
-  const entryModule = { id: '__entry__', name: '底部 Tab / 侧边栏', screens, coverage: { total: screens.length, collected } };
+  const entryModule = { id: '__entry__', name: 'Bottom Tabs', screens, coverage: { total: screens.length, collected } };
   return `
     <section class="nav-group nav-group--entry">
-      <h2 class="group-title">导航入口 (${screens.length})</h2>
+      <h2 class="group-title">Bottom Tabs (${screens.length})</h2>
       ${renderModule(entryModule)}
     </section>`;
 }
