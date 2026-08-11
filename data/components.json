@@ -1,0 +1,5 @@
+{
+  "version": 1,
+  "note": "底层可复用 UI 组件目录。收集新屏时先查此表，layout block 可用 component 字段引用。",
+  "components": []
+}
